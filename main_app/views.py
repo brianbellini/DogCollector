@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 def home(request):
-  return HttpResponse('<h1>Hello dog people</h1>')
+  return render(request, 'home.html')
 
 def about(request):
   return render(request, 'about.html')
@@ -41,7 +41,7 @@ def add_feeding(request, dog_id):
 
 class DogCreate(LoginRequiredMixin, CreateView):
   model = Dog
-  fields = '__all__'
+  fields = ['name', 'breed', 'description', 'age']
   success_url = '/dogs/'
 
   def form_valid(self, form):
